@@ -63,6 +63,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "1.16.0"
   convert:
     dependency: transitive
@@ -71,6 +72,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -225,6 +227,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "1.8.1"
   path_drawing:
     dependency: transitive
@@ -328,6 +331,7 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "2.1.2"
   xml:
     dependency: transitive
