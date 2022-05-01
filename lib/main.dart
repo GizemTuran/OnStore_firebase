@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
+import 'package:onstore/routes.dart';
 import 'constants.dart';
 import 'package:onstore/pages/login_page.dart';
 import 'package:onstore/pages/new_page.dart';
@@ -19,14 +20,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      /*
-      initialRoute: '/login',
-      routes: {
-        '/': (context) => const HomeWidget(),
-        '/login': (context) => const LoginPage(),
-        '/newPage': (context) => const NewPage()
-      },
-      */
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         fontFamily: "Muli",
@@ -37,7 +30,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: SplashScreen()
+      //home: SplashScreen()
+      initialRoute: SplashScreen.routeName,
+      routes: routes,
     );
 
   }
