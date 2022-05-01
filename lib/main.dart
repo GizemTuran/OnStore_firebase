@@ -2,11 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/sign_in/sign_in_screen.dart';
-import 'package:onstore/routs.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
 import 'package:onstore/routes.dart';
 import 'package:onstore/theme.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,18 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-
-      initialRoute: SplashScreen.routeName,
-      routes: routes,
-
-      theme: theme()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        initialRoute: SplashScreen.routeName,
+        routes: routes,
+        theme: theme());
   }
 }
-
-
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
@@ -42,17 +35,18 @@ class HomeWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Firebase'),
       ),
-        body: Column(
-          children: [
-            ElevatedButton(onPressed: (){
-              Navigator.pushNamed(context,'/landing');
-            }, child: Text("Landing"))
-          ],
-        ),
-      );
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/landing');
+              },
+              child: Text("Landing"))
+        ],
+      ),
+    );
   }
 }
-
 
 /*Future<Widget>_getImage(BuildContext context, String imageName) async{
   Image image;
@@ -72,11 +66,10 @@ Future<Widget> _getImage(BuildContext context, String imageName) async {
   });
   return image;
 }
-class FireStorageService extends ChangeNotifier{
+
+class FireStorageService extends ChangeNotifier {
   FireStorageService();
   static Future<dynamic> loadImage(BuildContext context, String Image) async {
     return await FirebaseStorage.instance.ref().child(Image).getDownloadURL();
   }
 }
-
-
