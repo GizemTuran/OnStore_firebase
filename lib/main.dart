@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:onstore/pages/sign_in/sign_in_screen.dart';
+import 'package:onstore/routs.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
 import 'constants.dart';
 import 'package:onstore/pages/login_page.dart';
@@ -19,29 +21,33 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      /*
-      initialRoute: '/login',
-      routes: {
-        '/': (context) => const HomeWidget(),
-        '/login': (context) => const LoginPage(),
-        '/newPage': (context) => const NewPage()
-      },
-      */
-      theme: ThemeData(
+      theme:theme(),
+      initialRoute: SignInScreen.routeName,
+      routes: routes,
+    );
+  }
+}
+      ThemeData theme(){
+        return ThemeData(
         scaffoldBackgroundColor: Colors.white,
         fontFamily: "Muli",
+        appBarTheme: appBarTheme(),
         textTheme: TextTheme(
           bodyText1: TextStyle(color: kTextColor),
           bodyText2: TextStyle(color: kTextColor),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+        );
+      }
 
-      home: SplashScreen()
-    );
-
-  }
-}
+      AppBarTheme appBarTheme() {
+        return AppBarTheme(
+        color: Colors.white,
+        elevation: 0,
+        brightness:Brightness.light,
+        iconTheme: IconThemeData(color: Colors.black),
+      );
+      }
 
 /*
 class HomeWidget extends StatelessWidget {
