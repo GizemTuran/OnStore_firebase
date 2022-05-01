@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:onstore/pages/home/home_page.dart';
+
 import 'package:onstore/pages/splash/splash_screen.dart';
+import 'package:onstore/theme.dart';
 import 'constants.dart';
 import 'package:onstore/pages/login_page.dart';
 import 'package:onstore/pages/new_page.dart';
@@ -19,31 +22,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      /*
-      initialRoute: '/login',
+
+      initialRoute: '/home',
       routes: {
         '/': (context) => const HomeWidget(),
+        HomePage.routeName: (context) => HomePage(),
         '/login': (context) => const LoginPage(),
         '/newPage': (context) => const NewPage()
       },
-      */
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: "Muli",
-        textTheme: TextTheme(
-          bodyText1: TextStyle(color: kTextColor),
-          bodyText2: TextStyle(color: kTextColor),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
 
-      home: SplashScreen()
+      theme: theme()
     );
-
   }
 }
 
-/*
+
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
     Key key,
@@ -55,11 +48,17 @@ class HomeWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Firebase'),
       ),
-        body: Column(),
+        body: Column(
+          children: [
+            ElevatedButton(onPressed: (){
+              Navigator.pushNamed(context,'/landing');
+            }, child: Text("Landing"))
+          ],
+        ),
       );
   }
 }
-*/
+
 
 /*Future<Widget>_getImage(BuildContext context, String imageName) async{
   Image image;
