@@ -4,11 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/home/home_page.dart';
 
 import 'package:onstore/pages/splash/splash_screen.dart';
-<<<<<<< HEAD
 import 'package:onstore/theme.dart';
-=======
-import 'package:onstore/routes.dart';
->>>>>>> 2fa4eb4e981655738a4eb0ee572940926628da49
 import 'constants.dart';
 import 'package:onstore/pages/login_page.dart';
 import 'package:onstore/pages/new_page.dart';
@@ -26,7 +22,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-<<<<<<< HEAD
 
       initialRoute: '/home',
       routes: {
@@ -37,21 +32,6 @@ class MyApp extends StatelessWidget {
       },
 
       theme: theme()
-=======
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: "Muli",
-        textTheme: TextTheme(
-          bodyText1: TextStyle(color: kTextColor),
-          bodyText2: TextStyle(color: kTextColor),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-
-      //home: SplashScreen()
-      initialRoute: SplashScreen.routeName,
-      routes: routes,
->>>>>>> 2fa4eb4e981655738a4eb0ee572940926628da49
     );
   }
 }
