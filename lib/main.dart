@@ -4,9 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/sign_in/sign_in_screen.dart';
 import 'package:onstore/routs.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
-import 'constants.dart';
-import 'package:onstore/pages/login_page.dart';
-import 'package:onstore/pages/new_page.dart';
+import 'package:onstore/routes.dart';
+import 'package:onstore/theme.dart';
 
 
 void main() async {
@@ -21,35 +20,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme:theme(),
-      initialRoute: SignInScreen.routeName,
+
+      initialRoute: SplashScreen.routeName,
       routes: routes,
+
+      theme: theme()
     );
   }
 }
-      ThemeData theme(){
-        return ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: "Muli",
-        appBarTheme: appBarTheme(),
-        textTheme: TextTheme(
-          bodyText1: TextStyle(color: kTextColor),
-          bodyText2: TextStyle(color: kTextColor),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        );
-      }
 
-      AppBarTheme appBarTheme() {
-        return AppBarTheme(
-        color: Colors.white,
-        elevation: 0,
-        brightness:Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black),
-      );
-      }
 
-/*
+
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
     Key key,
@@ -61,11 +42,17 @@ class HomeWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Firebase'),
       ),
-        body: Column(),
+        body: Column(
+          children: [
+            ElevatedButton(onPressed: (){
+              Navigator.pushNamed(context,'/landing');
+            }, child: Text("Landing"))
+          ],
+        ),
       );
   }
 }
-*/
+
 
 /*Future<Widget>_getImage(BuildContext context, String imageName) async{
   Image image;

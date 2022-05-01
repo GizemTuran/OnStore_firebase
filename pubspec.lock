@@ -63,9 +63,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "1.15.0"
-=======
+
     version: "1.16.0"
   convert:
     dependency: transitive
@@ -74,7 +72,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
->>>>>>> 3e473014081c8ac880c93c79b9b69b63d3b773fb
+
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -229,9 +227,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "1.8.0"
-=======
+
     version: "1.8.1"
   path_drawing:
     dependency: transitive
@@ -254,7 +250,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
->>>>>>> 3e473014081c8ac880c93c79b9b69b63d3b773fb
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -336,12 +331,7 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "2.1.1"
-sdks:
-  dart: ">=2.14.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.5"
-=======
+
     version: "2.1.2"
   xml:
     dependency: transitive
@@ -353,4 +343,4 @@ sdks:
 sdks:
   dart: ">=2.17.0-0 <3.0.0"
   flutter: ">=1.16.0"
->>>>>>> 3e473014081c8ac880c93c79b9b69b63d3b773fb
+
