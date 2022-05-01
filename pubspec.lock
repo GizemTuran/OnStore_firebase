@@ -63,7 +63,11 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.16.0"
+=======
+    version: "1.15.0"
+>>>>>>> aa41111f862df60700d6b56257179e88956940e0
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -139,6 +143,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+<<<<<<< HEAD
   flutter_svg:
     dependency: "direct main"
     description:
@@ -146,6 +151,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+=======
+>>>>>>> aa41111f862df60700d6b56257179e88956940e0
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -205,19 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   path:
     dependency: transitive
     description:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.8.1"
   path_drawing:
     dependency: transitive
@@ -240,6 +241,9 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+=======
+    version: "1.8.0"
+>>>>>>> aa41111f862df60700d6b56257179e88956940e0
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -247,13 +251,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.3.3"
   quiver:
     dependency: transitive
     description:
