@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020281584005",
+    "project_id": "onstore-e1671",
+    "storage_bucket": "onstore-e1671.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020281584005:android:8f542b453ca5b0ea48ecec",
+        "android_client_info": {
+          "package_name": "com.company.onstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020281584005-cesopicbkljinuahaars42ljtq01ce60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA47t9Y4oDf_J2HY4ZPkQXV1qDV2QQDqvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020281584005-cesopicbkljinuahaars42ljtq01ce60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
