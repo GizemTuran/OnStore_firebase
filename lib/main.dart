@@ -1,7 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:onstore/pages/splash/splash_screen.dart';
+import 'constants.dart';
+import 'package:onstore/pages/login_page.dart';
+import 'package:onstore/pages/new_page.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,41 +17,49 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      /*
+      initialRoute: '/login',
+      routes: {
+        '/': (context) => const HomeWidget(),
+        '/login': (context) => const LoginPage(),
+        '/newPage': (context) => const NewPage()
+      },
+      */
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: "Muli",
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: kTextColor),
+          bodyText2: TextStyle(color: kTextColor),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Firebase'),
-        ), 
-          body: Center(
-            child: FutureBuilder(
-              future: _getImage(context, "test/minions.jpg"),
-              builder: (context,snapshot){
-                if(snapshot.connectionState==ConnectionState.done){
-                  return Container(
-                    width: MediaQuery.of(context).size.width /1.2,
-                    height:MediaQuery.of(context).size.width /1.2,
-                    child: snapshot.data,
-                  );
-                }
-                if(snapshot.connectionState==ConnectionState.waiting){
-                  return Container(
-                    width: MediaQuery.of(context).size.width /1.2,
-                    height:MediaQuery.of(context).size.width /1.2,
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return Container();
-              },
-              ),
-                ),
-              ),
-          );
+
+      home: SplashScreen()
+    );
+
   }
 }
+
+/*
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Firebase'),
+      ),
+        body: Column(),
+      );
+  }
+}
+*/
 
 /*Future<Widget>_getImage(BuildContext context, String imageName) async{
   Image image;
