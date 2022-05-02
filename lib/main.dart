@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:onstore/pages/sign_in/sign_in_screen.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
 import 'package:onstore/routes.dart';
 import 'package:onstore/theme.dart';
@@ -17,34 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Firebase OnStore App',
         initialRoute: SplashScreen.routeName,
         routes: routes,
         theme: theme());
-  }
-}
-
-class HomeWidget extends StatelessWidget {
-  const HomeWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Firebase'),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/landing');
-              },
-              child: Text("Landing"))
-        ],
-      ),
-    );
   }
 }
 
