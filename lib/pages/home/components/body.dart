@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:onstore/pages/home/components/icon_btn_with_counter.dart';
 import 'package:onstore/size_config.dart';
 import 'package:onstore/constants.dart';
 
@@ -12,6 +13,9 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: getProportionateScreenWidth(20),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(20)),
@@ -19,7 +23,7 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width * (0.6),
+                      width: SizeConfig.screenWidth * (0.6),
                       height: 50,
                       decoration: BoxDecoration(
                         color: kSecondaryColor.withOpacity(0.1),
@@ -35,37 +39,20 @@ class Body extends StatelessWidget {
                             hintText: "Search Product",
                             prefixIcon: Icon(Icons.search),
                             contentPadding: EdgeInsets.symmetric(
-                              horizontal: getProportionateScreenWidth(20),
-                              vertical: getProportionateScreenHeight(11),
+                              horizontal: getProportionateScreenWidth(25),
+                              vertical: getProportionateScreenHeight(15),
                             )),
                       )),
-                  Stack(
-                    children: [
-                      Container(
-                        padding:
-                            EdgeInsets.all(getProportionateScreenWidth(10)),
-                        height: getProportionateScreenHeight(46),
-                        width: getProportionateScreenWidth(46),
-                        decoration: BoxDecoration(
-                          color: kSecondaryColor.withOpacity(0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset("assets/icons/Bell.svg"),
-                      ),
-                      Positioned(
-                        right: 0,
-                        child: Container(
-                          height: getProportionateScreenWidth(16),
-                          width: getProportionateScreenWidth(16),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFF4848),
-                            shape: BoxShape.circle,
-                            border: Border.all(width: 1.5, color: Colors.white),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                  IconBtnWithCounter(
+                    svgSrc: 'assets/icons/Cart Icon.svg',
+                    numOfItems: 0,
+                    press: () {},
+                  ),
+                  IconBtnWithCounter(
+                    svgSrc: 'assets/icons/Bell.svg',
+                    numOfItems: 4,
+                    press: () {},
+                  ),
                 ],
               ),
             ),
