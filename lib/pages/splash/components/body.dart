@@ -16,15 +16,15 @@ class _BodyState extends State<Body> {
   List<Map<String,String>> splashData = [
     {
       "text": "Welcome to OnStore! The Biggest Online Store!",
-      "image" : "assets/images/s1.jpg"
+      "image" : "assets/images/splash4.png"
     },
     {
-      "text": "Teeeeeeeeeeeeeeeeest!",
-      "image" : "assets/images/s2.jpg"
+      "text": "Buy the Best Products at the Best Prices!",
+      "image" : "assets/images/splash_1.png"
     },
     {
-      "text": "More TEEEEEEEEEEEEEEEST!!!!",
-      "image" : "assets/images/s3.jpg"
+      "text": "Limitless Coupons and Endless Opportunities!",
+      "image" : "assets/images/splash5.png"
     }
   ];
 
