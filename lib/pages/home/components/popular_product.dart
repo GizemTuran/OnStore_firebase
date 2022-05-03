@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onstore/core/services/firebase_service.dart';
+import 'package:onstore/pages/sign_in/sign_in_screen.dart';
 import 'package:onstore/shared/components/product_card.dart';
 import 'package:onstore/models/Product.dart';
 import 'package:onstore/pages/home/components/special_title.dart';
@@ -7,7 +8,7 @@ import 'package:onstore/size_config.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class PopularProducts extends StatelessWidget {
-  void BtnClick() async {
+  void BtnClick(BuildContext context) {
     print("btnclick");
     FirebaseService.getProducts();
   }
@@ -16,7 +17,10 @@ class PopularProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(onPressed: BtnClick, child: Text("Print Products")),
+        ElevatedButton(
+            onPressed: () =>
+                Navigator.pushNamed(context, SignInScreen.routeName),
+            child: Text("Print Products")),
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
