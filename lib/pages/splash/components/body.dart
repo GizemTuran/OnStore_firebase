@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:onstore/constants.dart';
 import 'package:onstore/pages/home/home_page.dart';
 import 'package:onstore/pages/splash/components/splash_content.dart';
+import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/size_config.dart';
-
-import '../../../components/default_button.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -13,18 +12,18 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int currentPage = 0;
-  List<Map<String,String>> splashData = [
+  List<Map<String, String>> splashData = [
     {
       "text": "Welcome to OnStore! The Biggest Online Store!",
-      "image" : "assets/images/splash4.png"
+      "image": "assets/images/splash4.png"
     },
     {
       "text": "Buy the Best Products at the Best Prices!",
-      "image" : "assets/images/splash_1.png"
+      "image": "assets/images/splash_1.png"
     },
     {
       "text": "Limitless Coupons and Endless Opportunities!",
-      "image" : "assets/images/splash5.png"
+      "image": "assets/images/splash5.png"
     }
   ];
 
@@ -45,32 +44,36 @@ class _BodyState extends State<Body> {
                 },
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
-                image: splashData[index]["image"],
-                text: splashData[index]["text"],
-              ),
-              ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-                  child: Column(
-                    children: [
-                      Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(splashData.length, (index) => buildDot(index: index)),
-                      ),
-                      Spacer(flex: 3),
-                      DefaultButton(
-                        press: () {Navigator.pushNamed(context, HomePage.routeName);},
-                        text: "Continue",
-                      ),
-                      Spacer(),
-                    ],
-                  ),
+                  image: splashData[index]["image"],
+                  text: splashData[index]["text"],
                 ),
-              )
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20)),
+                child: Column(
+                  children: [
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                          splashData.length, (index) => buildDot(index: index)),
+                    ),
+                    Spacer(flex: 3),
+                    DefaultButton(
+                      press: () {
+                        Navigator.pushNamed(context, HomePage.routeName);
+                      },
+                      text: "Continue",
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -86,10 +89,7 @@ class _BodyState extends State<Body> {
       decoration: BoxDecoration(
         color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
         borderRadius: BorderRadius.circular(3),
-        ),
+      ),
     );
   }
 }
-
-
-

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onstore/components/product_card.dart';
+import 'package:onstore/shared/components/product_card.dart';
 import 'package:onstore/models/Product.dart';
 import 'package:onstore/pages/home/components/special_title.dart';
 import 'package:onstore/size_config.dart';
