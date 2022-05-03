@@ -5,10 +5,10 @@ import 'package:onstore/size_config.dart';
 
 class IconBtnWithCounter extends StatelessWidget {
   const IconBtnWithCounter({
-    Key key,
-    @required this.svgSrc,
-    @required this.numOfItems,
-    @required this.press,
+    Key? key,
+    required this.svgSrc,
+    required this.numOfItems,
+    required this.press,
   }) : super(key: key);
   final String svgSrc;
   final int numOfItems;

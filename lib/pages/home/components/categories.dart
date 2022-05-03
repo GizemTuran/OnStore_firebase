@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onstore/size_config.dart';
 
+class CategoryModel {
+  String? icon, text;
+
+  CategoryModel({required this.icon, required this.text});
+}
+
 class Categories extends StatelessWidget {
-  const Categories({Key key}) : super(key: key);
+  const Categories({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, Object>> categories = [
-      {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
-      {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
-      {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
-      {"icon": "assets/icons/Discover.svg", "text": "More"},
+    List<CategoryModel> categories = [
+      CategoryModel(icon: "assets/icons/Flash Icon.svg", text: "Flash Deal"),
+      CategoryModel(icon: "assets/icons/Bill Icon.svg", text: "Bill"),
+      CategoryModel(icon: "assets/icons/Game Icon.svg", text: "Game"),
+      CategoryModel(icon: "assets/icons/Gift Icon.svg", text: "Daily Gift"),
+      CategoryModel(icon: "assets/icons/Discover.svg", text: "More"),
     ];
     return Padding(
       padding:
@@ -21,12 +27,9 @@ class Categories extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...List.generate(
-              categories.length,
-              (index) => CategoryCard(
-                  icon: categories[index]["icon"],
-                  text: categories[index]["text"],
-                  press: () {}))
+          for (CategoryModel category in categories)
+            CategoryCard(
+                icon: category.icon!, text: category.text!, press: () {})
         ],
       ),
     );
@@ -35,10 +38,10 @@ class Categories extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key key,
-    @required this.icon,
-    @required this.text,
-    @required this.press,
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
   final String icon, text;

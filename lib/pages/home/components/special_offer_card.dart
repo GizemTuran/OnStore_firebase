@@ -3,11 +3,11 @@ import 'package:onstore/size_config.dart';
 
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
-    Key key,
-    @required this.category,
-    @required this.image,
-    @required this.numOfBrands,
-    @required this.press,
+    Key? key,
+    required this.category,
+    required this.image,
+    required this.numOfBrands,
+    required this.press,
   }) : super(key: key);
   final String category, image;
   final int numOfBrands;

@@ -1,8 +1,8 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-Future<Widget> getImage(BuildContext context, String imageName) async {
-  Image image;
+Future<Image?> getImage(BuildContext context, String imageName) async {
+  Image? image;
   await FireStorageService.loadImage(context, imageName).then((value) {
     image = Image.network(value.toString(), fit: BoxFit.scaleDown);
   });

@@ -36,7 +36,7 @@ class SignInScreen extends StatelessWidget{
   }
 }
 class SignForm extends StatefulWidget {
-  SignForm({Key key}) : super(key: key);
+  SignForm({Key? key}) : super(key: key);
 
   @override
   State<SignForm> createState() => _SignFormState();
