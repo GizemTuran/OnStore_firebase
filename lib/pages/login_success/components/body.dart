@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onstore/components/default_button.dart';
+import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/size_config.dart';
 
 class Body extends StatelessWidget {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:onstore/constants.dart';
 import 'package:onstore/pages/forgot_password/forgot_password_screen.dart';
-
-import '../constants.dart';
-import '../size_config.dart';
+import 'package:onstore/size_config.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({

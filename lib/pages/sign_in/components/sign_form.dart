@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:onstore/components/custom_surfix_icon.dart';
-import 'package:onstore/components/form_error.dart';
+import 'package:onstore/constants.dart';
+import 'package:onstore/shared/components/custom_surfix_icon.dart';
+import 'package:onstore/shared/components/default_button.dart';
+import 'package:onstore/shared/components/form_error.dart';
 import 'package:onstore/pages/forgot_password/forgot_password_screen.dart';
 import 'package:onstore/pages/login_success/login_success_screen.dart';
-
-import '../../../components/default_button.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:onstore/size_config.dart';
 
 class SignForm extends StatefulWidget {
   @override
