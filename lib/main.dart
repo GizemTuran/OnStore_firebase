@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/sign_in/sign_in_screen.dart';
-import 'package:onstore/routs.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
 import 'package:onstore/routes.dart';
 import 'package:onstore/theme.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
 
-      initialRoute: SplashScreen.routeName,
+      initialRoute: SignInScreen.routeName,
       routes: routes,
 
       theme: theme()
