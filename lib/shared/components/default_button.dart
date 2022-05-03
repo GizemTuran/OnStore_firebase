@@ -4,9 +4,9 @@ import 'package:onstore/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
-    Key key,
-    this.text,
-    this.press,
+    Key? key,
+    required this.text,
+    required this.press,
   }) : super(key: key);
   final String text;
   final Function press;
@@ -17,7 +17,7 @@ class DefaultButton extends StatelessWidget {
       width: double.infinity,
       height: getProportionateScreenHeight(56),
       child: TextButton(
-          onPressed: press,
+          onPressed: press as void Function()?,
           style: TextButton.styleFrom(
               primary: Colors.white,
               backgroundColor: kPrimaryColor,

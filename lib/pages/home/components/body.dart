@@ -9,7 +9,7 @@ import 'package:onstore/pages/home/components/special_offers.dart';
 import 'package:onstore/size_config.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +19,19 @@ class Body extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenWidth(20),
           ),
-          const HomeHeader(),
+          HomeHeader(),
           SizedBox(
             height: getProportionateScreenWidth(30),
           ),
-          const DiscountBanner(),
+          DiscountBanner(),
           SizedBox(
             height: getProportionateScreenWidth(30),
           ),
-          const Categories(),
+          Categories(),
           SizedBox(
             height: getProportionateScreenWidth(30),
           ),
-          const SpecialOffers(),
+          SpecialOffers(),
           SizedBox(
             height: getProportionateScreenWidth(30),
           ),
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenWidth(20),
           ),
-          Center(
+          /*Center(
               child: FutureBuilder(
             future: getImage(context, "test/minions.jpg"),
             builder: (context, snapshot) {
@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
               }
               return Container();
             },
-          ))
+          ))*/
         ]),
       ),
     );
