@@ -13,19 +13,19 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
-  String password;
-  String confirm_password;
+  String? email;
+  String? password;
+  String? confirm_password;
   final List<String> errors = [];
 
-  void addError({String error}) {
+  void addError({String? error}) {
     if (!errors.contains(error))
       setState(() {
-        errors.add(error);
+        errors.add(error!);
       });
   }
 
-  void removeError({String error}) {
+  void removeError({String? error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
@@ -46,10 +46,9 @@ class _SignUpFormState extends State<SignUpForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text:"Continue",
+            text: "Continue",
             press: () {
-              if(_formKey.currentState.validate()){
-              }
+              if (_formKey.currentState!.validate()) {}
             },
           )
         ],
@@ -63,35 +62,35 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildConfPasswordFormField() {
     return TextFormField(
-    obscureText: true,
-    onSaved: (newValue) => confirm_password = newValue,
-    onChanged: (value) {
-      if (password == confirm_password) {
-        removeError(error: kMatchPassError);
-      } 
-      //else if (value.length >= 8) {
+      obscureText: true,
+      onSaved: (newValue) => confirm_password = newValue,
+      onChanged: (value) {
+        if (password == confirm_password) {
+          removeError(error: kMatchPassError);
+        }
+        //else if (value.length >= 8) {
         //removeError(error: kShortPassError);
-      //}
-      return null;
-    },
-    validator: (value) {
-      if (value.isEmpty) {
-        return "";
-      } else if (password != confirm_password) {
-        addError(error: kMatchPassError);
-        return "";
-      }
-      return null;
-    },
-    decoration: InputDecoration(
-      labelText: "Confirm Password",
-      hintText: "Re-enter your password",
-      // If  you are using latest version of flutter then lable text and hint text shown like this
-      // if you r using flutter less then 1.20.* then maybe this is not working properly
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      suffixIcon: CustomSurffixicon(svgIcon: "assets/icons/Lock.svg"),
-    ),
-  );
+        //}
+        return null;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "";
+        } else if (password != confirm_password) {
+          addError(error: kMatchPassError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Confirm Password",
+        hintText: "Re-enter your password",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixicon(svgIcon: "assets/icons/Lock.svg"),
+      ),
+    );
   }
 
   TextFormField buildEmailFormField() {
@@ -108,7 +107,7 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kEmailNullError);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
