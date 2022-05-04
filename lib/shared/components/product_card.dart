@@ -45,7 +45,7 @@ class ProductCard extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 1.2,
                           height: MediaQuery.of(context).size.width / 1.2,
                           child: CircularProgressIndicator(
-                            color: kSecondaryColor.withOpacity(1),
+                            color: kPrimaryColor.withOpacity(0.5),
                           ),
                         );
                       }

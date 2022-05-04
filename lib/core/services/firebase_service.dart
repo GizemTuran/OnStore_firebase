@@ -74,7 +74,7 @@ class FirebaseService {
       final pro = Product.fromJson(toMap(child));
       products.add(pro);
     }
-    print(products.length);
+
     return products;
   }
 

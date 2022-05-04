@@ -54,7 +54,7 @@ class PopularProductCardList extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
               final products = snapshot.data as List<Product>;
-              print("${products.length} snap");
+
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
@@ -66,11 +66,13 @@ class PopularProductCardList extends StatelessWidget {
                     return SizedBox.shrink();
                   });
             } else {
-              return Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                height: MediaQuery.of(context).size.width / 1.2,
-                child: CircularProgressIndicator(
-                  color: kSecondaryColor.withOpacity(1),
+              return Center(
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  child: CircularProgressIndicator(
+                    color: kPrimaryColor.withOpacity(1),
+                  ),
                 ),
               );
             }
