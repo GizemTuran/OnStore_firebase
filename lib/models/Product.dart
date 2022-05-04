@@ -1,55 +1,50 @@
 import 'package:flutter/material.dart';
 
-class Products {
-  List<Categories>? categories;
+class ProductsModel {
+  Products? products;
 
-  Products({this.categories});
+  ProductsModel({this.products});
 
-  Products.fromJson(Map<String, dynamic> json) {
-    if (json['categories'] != null) {
-      categories = <Categories>[];
-      json['categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
-      });
-    }
+  ProductsModel.fromJson(Map<String, dynamic> json) {
+    products = json['products'] != null
+        ? new Products.fromJson(json['products'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    if (this.products != null) {
+      data['products'] = this.products!.toJson();
     }
     return data;
   }
 }
 
-class Categories {
-  String? name;
-  List<Product>? product;
+class Products {
+  List<Product>? data;
 
-  Categories({this.name, this.product});
+  Products({this.data});
 
-  Categories.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    if (json['product'] != null) {
-      product = <Product>[];
-      json['product'].forEach((v) {
-        product!.add(new Product.fromJson(v));
+  Products.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Product>[];
+      json['data'].forEach((v) {
+        data!.add(new Product.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    if (this.product != null) {
-      data['product'] = this.product!.map((v) => v.toJson()).toList();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Product {
+  String? category;
   List<String>? colors;
   String? description;
   int? id;
@@ -61,17 +56,19 @@ class Product {
   String? title;
 
   Product(
-      {required this.colors,
-      required this.description,
-      required this.id,
-      required this.images,
+      {this.category,
+      this.colors,
+      this.description,
+      this.id,
+      this.images,
       this.isFavourite,
       this.isPopular,
-      required this.price,
-      required this.rating,
-      required this.title});
+      this.price,
+      this.rating,
+      this.title});
 
   Product.fromJson(Map<String, dynamic> json) {
+    category = json['category'];
     colors = json['colors'].cast<String>();
     description = json['description'];
     id = json['id'];
@@ -85,6 +82,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['category'] = this.category;
     data['colors'] = this.colors;
     data['description'] = this.description;
     data['id'] = this.id;

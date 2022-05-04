@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onstore/constants.dart';
+import 'package:onstore/core/services/firebase_service.dart';
 import 'package:onstore/models/Product.dart';
 import 'package:onstore/size_config.dart';
 
@@ -27,13 +28,30 @@ class ProductCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: 1.02,
               child: Container(
-                padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-                decoration: BoxDecoration(
-                  color: kSecondaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Image.asset(product.images![0]),
-              ),
+                  padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+                  decoration: BoxDecoration(
+                    color: kSecondaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                      child: FutureBuilder(
+                    future: getImage(context, product.images![0]),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return (snapshot.data as Image);
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: MediaQuery.of(context).size.width / 1.2,
+                          child: CircularProgressIndicator(
+                            color: kSecondaryColor.withOpacity(1),
+                          ),
+                        );
+                      }
+                      return Container();
+                    },
+                  ))),
             ),
             const SizedBox(height: 10),
             Text(
