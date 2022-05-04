@@ -14,21 +14,13 @@ class PopularProducts extends StatefulWidget {
 }
 
 class _PopularProductsState extends State<PopularProducts> {
-  void BtnClick() {
-    print("btnclick");
-    setState(() {});
-    FirebaseService.getProducts();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(
-            onPressed: () => BtnClick(), child: Text("Print Products")),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),
           child: SectionTitle(text: "Popular Products", press: () {}),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
@@ -54,7 +46,7 @@ class PopularProductCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getProportionateScreenWidth(250),
+      height: getProportionateScreenWidth(230),
       width: getProportionateScreenHeight(390),
       child: FutureBuilder(
           future: FirebaseService.getProducts(),
@@ -67,7 +59,11 @@ class PopularProductCardList extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, index) {
-                    return ProductCard(product: products[index]);
+                    if (products[index].isPopular != null &&
+                        products[index].isPopular == true) {
+                      return ProductCard(product: products[index]);
+                    }
+                    return SizedBox.shrink();
                   });
             } else {
               return Container(
