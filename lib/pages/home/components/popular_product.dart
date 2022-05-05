@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:onstore/constants.dart';
 import 'package:onstore/core/services/firebase_service.dart';
-import 'package:onstore/pages/sign_in/sign_in_screen.dart';
 import 'package:onstore/shared/components/product_card.dart';
 import 'package:onstore/models/Product.dart';
 import 'package:onstore/pages/home/components/special_title.dart';
 import 'package:onstore/size_config.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 class PopularProducts extends StatefulWidget {
   @override
@@ -47,7 +45,7 @@ class PopularProductCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: getProportionateScreenWidth(230),
-      width: MediaQuery.of(context).size.width,
+      width: SizeConfig.screenWidth,
       child: FutureBuilder(
           future: FirebaseService.getProducts(),
           builder: (context, snapshot) {

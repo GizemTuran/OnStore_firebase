@@ -10,6 +10,7 @@ ThemeData theme() {
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    primarySwatch: Colors.grey,
   );
 }
 
