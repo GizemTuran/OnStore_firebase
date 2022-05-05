@@ -24,41 +24,14 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-<<<<<<< HEAD
-          onTap: () => Navigator.pushNamed(
-            context,
-            DetailsScreen.routeName,
-            arguments: ProductDetailsArguments(product: product),
-          ),
-=======
           onTap: () => Navigator.pushNamed(context, DetailsScreen.routeName,
               arguments: ProductDetailsArguments(product: product)),
->>>>>>> 79733a76ed1dbc48388ca790f7c233c1b8041768
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
                 aspectRatio: 1.02,
                 child: Container(
-<<<<<<< HEAD
-                  padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-                  decoration: BoxDecoration(
-                    color: kSecondaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Hero(
-                    tag: product.id.toString(),
-                    child: Image.asset(product.images![0]),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                product.title!,
-                style: TextStyle(color: Colors.black),
-                maxLines: 2,
-              ),
-=======
                     padding: EdgeInsets.all(getProportionateScreenWidth(20)),
                     decoration: BoxDecoration(
                       color: kSecondaryColor.withOpacity(0.1),
@@ -94,7 +67,6 @@ class ProductCard extends StatelessWidget {
                   maxLines: 2,
                 ),
               ),
->>>>>>> 79733a76ed1dbc48388ca790f7c233c1b8041768
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -114,24 +86,16 @@ class ProductCard extends StatelessWidget {
                       height: getProportionateScreenWidth(28),
                       width: getProportionateScreenWidth(28),
                       decoration: BoxDecoration(
-<<<<<<< HEAD
-                        color: product.isFavourite != null && product.isFavourite! == true
-=======
                         color: product.isFavourite != null &&
                                 product.isFavourite == true
->>>>>>> 79733a76ed1dbc48388ca790f7c233c1b8041768
                             ? kPrimaryColor.withOpacity(0.15)
                             : kSecondaryColor.withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
                         "assets/icons/Heart Icon_2.svg",
-<<<<<<< HEAD
-                        color: product.isFavourite != null && product.isFavourite! == true
-=======
                         color: product.isFavourite != null &&
                                 product.isFavourite == true
->>>>>>> 79733a76ed1dbc48388ca790f7c233c1b8041768
                             ? Color(0xFFFF4848)
                             : Color(0xFFDBDEE4),
                       ),
