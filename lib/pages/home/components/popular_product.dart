@@ -47,7 +47,7 @@ class PopularProductCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: getProportionateScreenWidth(230),
-      width: getProportionateScreenHeight(390),
+      width: MediaQuery.of(context).size.width,
       child: FutureBuilder(
           future: FirebaseService.getProducts(),
           builder: (context, snapshot) {
