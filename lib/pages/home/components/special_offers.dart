@@ -13,7 +13,7 @@ class SpecialOffers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionTitle(text: "Special for You", press: () {}),
+        SectionTitle(text: "Categories", press: () {}),
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
@@ -23,8 +23,8 @@ class SpecialOffers extends StatelessWidget {
             children: [
               SpecialOfferCard(
                 image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
-                numOfBrands: 18,
+                category: "Electronics",
+                numOfBrands: 5,
                 press: () {},
               ),
               SpecialOfferCard(

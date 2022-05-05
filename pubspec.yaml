@@ -37,11 +37,11 @@ dependencies:
   http: ^0.13.4
 
   ###Firebase###
-  firebase_core: ^1.15.0
-  firebase_auth: ^3.3.16
-  firebase_storage: ^10.2.14
+  firebase_core: ^1.16.0
+  firebase_auth: ^3.3.17
+  firebase_storage: ^10.2.15
   firebase_database: ^9.0.13
-  cloud_firestore: ^3.1.13
+  cloud_firestore: ^3.1.14
   #firebase_analytics: ^7.0.1
   
   #file_picker: ^4.0.3

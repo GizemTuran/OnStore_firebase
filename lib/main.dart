@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:onstore/pages/splash/splash_screen.dart';
 import 'package:onstore/routes.dart';
 import 'package:onstore/theme.dart';

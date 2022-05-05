@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onstore/shared/components/no_account_text.dart';
 import 'package:onstore/shared/components/social_card.dart';
-import 'package:onstore/pages/forgot_password/forgot_password_screen.dart';
-
-import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 

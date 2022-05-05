@@ -39,32 +39,6 @@ class Body extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenWidth(20),
           ),
-          /*Center(
-              child: FutureBuilder(
-            future: getImage(context, "test/minions.jpg"),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: kSecondaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20)),
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  height: MediaQuery.of(context).size.width / 2,
-                  child: snapshot.data,
-                );
-              }
-              if (snapshot.connectionState == ConnectionState.active) {
-                return Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  height: MediaQuery.of(context).size.width / 1.2,
-                  child: CircularProgressIndicator(
-                    color: kSecondaryColor.withOpacity(1),
-                  ),
-                );
-              }
-              return Container();
-            },
-          ))*/
         ]),
       ),
     );
