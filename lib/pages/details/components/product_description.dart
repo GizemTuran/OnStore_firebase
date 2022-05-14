@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart';
 import 'package:onstore/constants.dart';
 import 'package:onstore/models/Product.dart';
 import 'package:onstore/size_config.dart';
