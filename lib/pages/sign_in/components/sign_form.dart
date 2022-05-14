@@ -6,6 +6,7 @@ import 'package:onstore/shared/components/form_error.dart';
 import 'package:onstore/pages/forgot_password/forgot_password_screen.dart';
 import 'package:onstore/pages/login_success/login_success_screen.dart';
 import 'package:onstore/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignForm extends StatefulWidget {
   @override
@@ -16,9 +17,12 @@ class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
+  String? _email;
+  String? _password;
   bool remember = false;
   final List<String> errors = [];
-
+  var pwd = TextEditingController();
+  var eml = TextEditingController();
   void addError({String? error}) {
     if (!errors.contains(error))
       setState(() {
@@ -31,6 +35,23 @@ class _SignFormState extends State<SignForm> {
       setState(() {
         errors.remove(error);
       });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readySharedPreferences();
+  }
+
+  Future<void> readySharedPreferences() async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+    this._email = sharedPreferences.getString("email") ?? "";
+    this._password = sharedPreferences.getString("password") ?? "";
+    setState(() {
+      eml.text = _email!;
+      pwd.text = _password!;
+    });
+    print("$_email $_password");
   }
 
   @override
@@ -74,7 +95,8 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                Navigator.popAndPushNamed(
+                    context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -85,8 +107,9 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      controller: pwd,
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => password = _password,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -118,8 +141,9 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: eml,
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => email = _email,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);

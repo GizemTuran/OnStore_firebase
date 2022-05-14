@@ -15,8 +15,14 @@ class ColorDots extends StatefulWidget {
   State<ColorDots> createState() => _ColorDotsState();
 }
 
+void incrementAmount() {
+  setState() {}
+  ;
+}
+
 class _ColorDotsState extends State<ColorDots> {
   int selectedColor = 0;
+  int amount = 1;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +36,6 @@ class _ColorDotsState extends State<ColorDots> {
               color: Color(int.parse(widget.product.colors![index])),
               isSelected: selectedColor == index,
               press: () {
-                print("pressed");
                 setState(() {
                   selectedColor = index;
                 });
@@ -41,16 +46,37 @@ class _ColorDotsState extends State<ColorDots> {
           TextButton(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.white, shape: CircleBorder()),
-            onPressed: () {},
+            onPressed: () {
+              if (amount > 1) {
+                this.amount--;
+                setState(() {});
+              }
+            },
             child: const Icon(
               Icons.remove,
               color: Colors.black,
             ),
           ),
+          Container(
+              width: getProportionateScreenWidth(25),
+              height: getProportionateScreenWidth(30),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: Text(
+                "$amount",
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18),
+              )),
           TextButton(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.white, shape: CircleBorder()),
-            onPressed: () {},
+            onPressed: () {
+              amount++;
+              setState(() {});
+            },
             child: const Icon(
               Icons.add,
               color: Colors.black,

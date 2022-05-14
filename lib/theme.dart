@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onstore/animations.dart';
 
 import 'constants.dart';
 
@@ -11,7 +12,13 @@ ThemeData theme() {
     textTheme: textTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primarySwatch: Colors.grey,
+    pageTransitionsTheme: pageTransitionsTheme(),
   );
+}
+
+PageTransitionsTheme pageTransitionsTheme() {
+  return PageTransitionsTheme(
+      builders: {TargetPlatform.android: SlideRightTransitionBuilder()});
 }
 
 InputDecorationTheme inputDecorationTheme() {

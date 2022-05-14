@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:onstore/pages/splash/splash_screen.dart';
+import 'package:onstore/pages/loading/loading_screen.dart';
+
 import 'package:onstore/routes.dart';
 import 'package:onstore/theme.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Firebase OnStore App',
-        initialRoute: SplashScreen.routeName,
+        initialRoute: LoadingScreen.routeName,
         routes: routes,
         theme: theme());
   }
