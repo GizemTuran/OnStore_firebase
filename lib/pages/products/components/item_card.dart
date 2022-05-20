@@ -28,7 +28,7 @@ class ItemCard extends StatelessWidget {
               // height: 180,
               // width: 160,
               decoration: BoxDecoration(
-                color: Color(int.parse(product.colors![0])),
+                color: Color.fromARGB(29, 153, 150, 150),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
@@ -56,9 +56,12 @@ class ItemCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
-            child: Text(
-              "${product.title}",
-              style: TextStyle(color: kTextLightColor),
+            child: Container(
+              height: 35,
+              child: Text(
+                "${product.title}",
+                style: TextStyle(color: kTextLightColor),
+              ),
             ),
           ),
           Text(

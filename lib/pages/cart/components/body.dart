@@ -4,6 +4,7 @@ import 'package:onstore/constants.dart';
 import 'package:onstore/models/Cart.dart';
 import 'package:onstore/pages/cart/components/cart_item_card.dart';
 import 'package:onstore/size_config.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key, required this.dismiss}) : super(key: key);
@@ -16,7 +17,8 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return cartItems == null
+    final cartItems = CartModel();
+    return cartItems.items.length == 0
         ? Container(
             width: 300,
             height: 300,
@@ -25,31 +27,33 @@ class _BodyState extends State<Body> {
         : ListView.builder(
             padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20)),
-            itemCount: cartItems.length,
+            itemCount: cartItems.items.length,
             itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Dismissible(
-                      direction: DismissDirection.endToStart,
-                      key: Key(cartItems[index].product.id.toString()),
-                      background: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFFFE6E6),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            SvgPicture.asset("assets/icons/Trash.svg")
-                          ],
-                        ),
-                      ),
-                      onDismissed: (direction) {
-                        setState(() {
-                          widget.dismiss.call(direction);
-                          cartItems.removeAt(index);
-                        });
-                      },
-                      child: CartItemCard(cart: cartItems[index])),
-                ));
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Dismissible(
+                  direction: DismissDirection.endToStart,
+                  key: Key(cartItems.items[index].product.id.toString()),
+                  background: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFFFE6E6),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        SvgPicture.asset("assets/icons/Trash.svg")
+                      ],
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    widget.dismiss.call(direction);
+                    cartItems.remove(index);
+                  },
+                  child:
+                      /*Consumer<CartModel>(builder: (context, cart, child) {
+                        return CartItemCard(cart: cartItems.items[index])
+                      }*/
+                      CartItemCard(cart: cartItems.items[index]),
+                )));
   }
 }

@@ -14,7 +14,7 @@ import 'package:onstore/size_config.dart';
 class Body extends StatelessWidget {
   final Product product;
   int amount = 1;
-
+  final cartItem = CartModel();
   Body({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -50,8 +50,7 @@ class Body extends StatelessWidget {
                           child: DefaultButton(
                             text: "Add to Cart",
                             press: () {
-                              cartItems.add(Cart(
-                                  product: product, numberOfItems: amount));
+                              cartItem.add(product, amount);
                             },
                           ),
                         ),

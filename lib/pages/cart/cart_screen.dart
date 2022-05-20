@@ -5,6 +5,7 @@ import 'package:onstore/models/Cart.dart';
 import 'package:onstore/pages/cart/components/body.dart';
 import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/size_config.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -29,6 +30,8 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   AppBar buildAppBar(BuildContext context) {
+    final cart = CartModel();
+
     return AppBar(
         centerTitle: true,
         title: Column(
@@ -37,10 +40,12 @@ class _CartScreenState extends State<CartScreen> {
               "Your Cart",
               style: TextStyle(color: Colors.black),
             ),
-            Text(
-              "${cartItems.length} items",
-              style: Theme.of(context).textTheme.caption,
-            ),
+            Consumer<CartModel>(builder: (context, cart, child) {
+              return Text(
+                "${cart.items.length} items",
+                style: Theme.of(context).textTheme.caption,
+              );
+            }),
           ],
         ));
   }
@@ -102,14 +107,18 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(TextSpan(text: "Total:\n", children: [
-                  TextSpan(
-                      text: "\$337.15",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold))
-                ])),
+                Consumer<CartModel>(
+                  builder: (context, cart, child) {
+                    return Text.rich(TextSpan(text: "Total:\n", children: [
+                      TextSpan(
+                          text: "\$${cart.totalPrice}",
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold))
+                    ]));
+                  },
+                ),
                 SizedBox(
                     width: getProportionateScreenWidth(190),
                     child: DefaultButton(

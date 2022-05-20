@@ -97,8 +97,8 @@ class Product {
     images = json['images'].cast<String>();
     isFavourite = json['isFavourite'];
     isPopular = json['isPopular'];
-    price = json['price'];
-    rating = json['rating'];
+    price = json['price'].toDouble();
+    rating = json['rating'].toDouble();
     title = json['title'];
   }
 
