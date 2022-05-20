@@ -26,7 +26,7 @@ class _HomeHeaderState extends State<HomeHeader> {
           SearchField(),
           IconBtnWithCounter(
             svgSrc: 'assets/icons/Cart Icon.svg',
-            numOfItems: firebaseCartItems.length,
+            numOfItems: cartItems.length,
             press: () =>
                 Navigator.pushNamed(context, CartScreen.rounteName).then((_) {
               setState(() {});

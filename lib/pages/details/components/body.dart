@@ -50,7 +50,7 @@ class Body extends StatelessWidget {
                           child: DefaultButton(
                             text: "Add to Cart",
                             press: () {
-                              firebaseCartItems.add(Cart(
+                              cartItems.add(Cart(
                                   product: product, numberOfItems: amount));
                             },
                           ),

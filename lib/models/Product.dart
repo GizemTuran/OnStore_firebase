@@ -1,22 +1,47 @@
-import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class ProductsModel {
-  Products? products;
+class Category {
+  late String name;
+  List<FirstSubCategory>? firstSubCategories;
 
-  ProductsModel({this.products});
+  Category({required this.name, this.firstSubCategories});
 
-  ProductsModel.fromJson(Map<String, dynamic> json) {
-    products = json['products'] != null
-        ? new Products.fromJson(json['products'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.products != null) {
-      data['products'] = this.products!.toJson();
+  Category.fromJson({required String name, required DataSnapshot json}) {
+    Category category;
+    if (json != null) {
+      List<FirstSubCategory> firstSubCategories = [];
+      name = name;
+      for (var i in json.children) {
+        i.children.forEach((element) {
+          firstSubCategories.add(
+              FirstSubCategory.fromJson(name: i.key.toString(), json: element));
+        });
+      }
     }
-    return data;
+  }
+}
+
+class FirstSubCategory {
+  late String name;
+  List<SecondSubCategory>? subCategories;
+
+  FirstSubCategory({required this.name, this.subCategories});
+  FirstSubCategory.fromJson(
+      {required String name, required DataSnapshot json}) {
+    if (json.children != null) {
+      print(json.children.iterator.moveNext().runtimeType);
+    }
+  }
+}
+
+class SecondSubCategory {
+  late String name;
+  List<Product>? products;
+
+  SecondSubCategory({required this.name, this.products});
+
+  SecondSubCategory.fromJson(String name, Map<String, dynamic> json) {
+    print(json.keys);
   }
 }
 
@@ -44,7 +69,6 @@ class Products {
 }
 
 class Product {
-  String? category;
   List<String>? colors;
   String? description;
   int? id;
@@ -56,8 +80,7 @@ class Product {
   String? title;
 
   Product(
-      {this.category,
-      this.colors,
+      {this.colors,
       this.description,
       this.id,
       this.images,
@@ -68,7 +91,6 @@ class Product {
       this.title});
 
   Product.fromJson(Map<String, dynamic> json) {
-    category = json['category'];
     colors = json['colors'].cast<String>();
     description = json['description'];
     id = json['id'];
@@ -82,7 +104,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category'] = this.category;
+
     data['colors'] = this.colors;
     data['description'] = this.description;
     data['id'] = this.id;
@@ -95,82 +117,3 @@ class Product {
     return data;
   }
 }
-
-List<Product> demoProducts = [
-  Product(
-    id: 1,
-    images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
-    ],
-    colors: [
-      "Color(0xFFF6625E)",
-      "Color(0xFF836DB8)",
-      "Color(0xFFDECB9C)",
-      "Colors.white",
-    ],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/images/Image Popular Product 2.png",
-    ],
-    colors: [
-      "Color(0xFFF6625E)",
-      "Color(0xFF836DB8)",
-      "Color(0xFFDECB9C)",
-      "Colors.white",
-    ],
-    title: "Nike Sport White - Man Pant",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/images/glap.png",
-    ],
-    colors: [
-      " Color(0xFFF6625E)",
-      " Color(0xFF836DB8)",
-      " Color(0xFFDECB9C)",
-      " Colors.white",
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/images/wireless headset.png",
-    ],
-    colors: [
-      "Color(0xFFF6625E)",
-      "Color(0xFF836DB8)",
-      "Color(0xFFDECB9C)",
-      "Colors.white",
-    ],
-    title: "Logitech Head",
-    price: 20.20,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-  ),
-];
-
-const String description =
-    "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …";

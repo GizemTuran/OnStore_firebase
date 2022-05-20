@@ -16,7 +16,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return firebaseCartItems == null
+    return cartItems == null
         ? Container(
             width: 300,
             height: 300,
@@ -25,12 +25,12 @@ class _BodyState extends State<Body> {
         : ListView.builder(
             padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20)),
-            itemCount: firebaseCartItems.length,
+            itemCount: cartItems.length,
             itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Dismissible(
                       direction: DismissDirection.endToStart,
-                      key: Key(firebaseCartItems[index].product.id.toString()),
+                      key: Key(cartItems[index].product.id.toString()),
                       background: Container(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
@@ -46,10 +46,10 @@ class _BodyState extends State<Body> {
                       onDismissed: (direction) {
                         setState(() {
                           widget.dismiss.call(direction);
-                          firebaseCartItems.removeAt(index);
+                          cartItems.removeAt(index);
                         });
                       },
-                      child: CartItemCard(cart: firebaseCartItems[index])),
+                      child: CartItemCard(cart: cartItems[index])),
                 ));
   }
 }

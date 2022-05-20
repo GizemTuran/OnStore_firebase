@@ -6,6 +6,7 @@ import 'package:onstore/pages/home/components/discount_banner.dart';
 import 'package:onstore/pages/home/components/home_header.dart';
 import 'package:onstore/pages/home/components/popular_product.dart';
 import 'package:onstore/pages/home/components/special_offers.dart';
+import 'package:onstore/pages/products/products_screen.dart';
 import 'package:onstore/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -39,6 +40,11 @@ class Body extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenWidth(20),
           ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, ProductScreen.routeName);
+              },
+              child: Text("test firebase")),
         ]),
       ),
     );

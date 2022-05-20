@@ -14,11 +14,11 @@ const kTextColor = Color(0xFF757575);
 const kAnimationDuration = Duration(milliseconds: 200);
 
 final headingStyle = TextStyle(
-              fontSize: getProportionateScreenWidth(28),
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              height: 1.5,
-            );
+  fontSize: getProportionateScreenWidth(28),
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+  height: 1.5,
+);
 
 // Form Error
 final RegExp emailValidatorRegExp =
@@ -28,3 +28,5 @@ const String kInvalidEmailError = "Please Enter Valid Email";
 const String kPassNullError = "Please Enter your password";
 const String kShortPassError = "Password is too short";
 const String kMatchPassError = "Passwords don't match";
+const kDefaultPaddin = 20.0;
+const kTextLightColor = Color(0xFFACACAC);

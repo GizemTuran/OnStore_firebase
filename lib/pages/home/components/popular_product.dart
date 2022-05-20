@@ -6,6 +6,8 @@ import 'package:onstore/models/Product.dart';
 import 'package:onstore/pages/home/components/special_title.dart';
 import 'package:onstore/size_config.dart';
 
+import '../../../models/PopularProduct.dart';
+
 class PopularProducts extends StatefulWidget {
   @override
   State<PopularProducts> createState() => _PopularProductsState();
@@ -47,7 +49,7 @@ class PopularProductCardList extends StatelessWidget {
       height: getProportionateScreenWidth(230),
       width: SizeConfig.screenWidth,
       child: FutureBuilder(
-          future: FirebaseService.getProducts(),
+          future: FirebaseService.getPopProducts(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onstore/constants.dart';
 import 'package:onstore/models/Cart.dart';
 import 'package:onstore/pages/cart/components/body.dart';
-import 'package:onstore/pages/home/home_page.dart';
 import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/size_config.dart';
 
