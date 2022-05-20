@@ -7,9 +7,13 @@ class ColorDots extends StatefulWidget {
   const ColorDots({
     Key? key,
     required this.product,
+    required this.amountPress,
+    required this.amount,
   }) : super(key: key);
 
   final Product product;
+  final Function amountPress;
+  final int amount;
 
   @override
   State<ColorDots> createState() => _ColorDotsState();
@@ -48,8 +52,10 @@ class _ColorDotsState extends State<ColorDots> {
                 backgroundColor: Colors.white, shape: CircleBorder()),
             onPressed: () {
               if (amount > 1) {
-                this.amount--;
-                setState(() {});
+                setState(() {
+                  amount--;
+                  widget.amountPress(-1);
+                });
               }
             },
             child: const Icon(
@@ -64,7 +70,7 @@ class _ColorDotsState extends State<ColorDots> {
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Text(
-                "$amount",
+                "${amount}",
                 style: TextStyle(
                     color: kPrimaryColor,
                     fontWeight: FontWeight.w600,
@@ -74,8 +80,10 @@ class _ColorDotsState extends State<ColorDots> {
             style: TextButton.styleFrom(
                 backgroundColor: Colors.white, shape: CircleBorder()),
             onPressed: () {
-              amount++;
-              setState(() {});
+              setState(() {
+                amount++;
+                widget.amountPress(1);
+              });
             },
             child: const Icon(
               Icons.add,

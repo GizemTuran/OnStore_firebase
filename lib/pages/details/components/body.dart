@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:onstore/models/Cart.dart';
 import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/shared/components/rounded_icon_btn.dart';
 import 'package:onstore/constants.dart';
@@ -12,8 +13,9 @@ import 'package:onstore/size_config.dart';
 
 class Body extends StatelessWidget {
   final Product product;
+  int amount = 1;
 
-  const Body({Key? key,required this.product}) : super(key: key);
+  Body({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,27 +26,36 @@ class Body extends StatelessWidget {
             color: Colors.white,
             child: Column(
               children: [
-                ProductDescription(product: product, pressOnSeeMore: () {} ),
+                ProductDescription(product: product, pressOnSeeMore: () {}),
                 TopRoundedContainer(
                   color: Color(0xFFF6F7F9),
                   child: Column(
                     children: [
-                      ColorDots(product: product),
+                      ColorDots(
+                        product: product,
+                        amount: amount,
+                        amountPress: (int value) {
+                          amount += value;
+                        },
+                      ),
                       TopRoundedContainer(
                         color: Colors.white,
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: SizeConfig.screenWidth * 0.15,
-                            right : SizeConfig.screenWidth * 0.15,
+                            right: SizeConfig.screenWidth * 0.15,
                             top: getProportionateScreenWidth(15),
                             bottom: getProportionateScreenWidth(35),
-                            ),
+                          ),
                           child: DefaultButton(
                             text: "Add to Cart",
-                            press: () {},
+                            press: () {
+                              firebaseCartItems.add(Cart(
+                                  product: product, numberOfItems: amount));
+                            },
                           ),
                         ),
-                        )
+                      )
                     ],
                   ),
                 )
