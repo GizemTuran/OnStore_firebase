@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:onstore/models/Product.dart';
 
@@ -59,8 +57,7 @@ class ProductFilterProvider extends ChangeNotifier {
         el is Map ? scat.add(el['child']) : scat.add(el);
       });
     else {
-      //if (idx > -1) print(cat2.elementAt(idx));
-      print(cat2);
+      //print(cat2);
     }
     return scat;
   }
@@ -97,35 +94,8 @@ class ProductFilterProvider extends ChangeNotifier {
         catt.addAll(cat2);
 
         cat2 = cat2 is List ? cat2.elementAt(idx2)["children"] : [];
-      } else if (idx1 > -1) {
-        print("else if ");
-      } else {}
+      }
     }
     notifyListeners();
-  }
-
-  void filterCategories() {
-    /*  if (category == "") {
-      cat1 = categories.keys.toList();
-      if (categories[cat1[0]] is Map) {
-        final c = categories.entries.toList();
-        print(c);
-      }
-    } else {
-      print(categories[cat1[0]]);
-    }*/
-  }
-
-  Future<void> filterProducts() async {
-    filterCategories();
-
-    /*if (scategory == "") {
-      final cat1 = await FirebaseService.getSubcategories("");
-      categories = cat1;
-    } else {
-      final cat1 = await FirebaseService.getSubcategories(category);
-      categories = cat1;
-    }*/
-    //notifyListeners();
   }
 }
