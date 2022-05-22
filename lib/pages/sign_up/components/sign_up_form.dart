@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onstore/core/services/authenticationProvider.dart';
+import 'package:onstore/pages/login_success/login_success_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
@@ -50,11 +51,29 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
-                context.read<AuthenticationProvider>().signUp(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim());
+                String response = await context
+                    .read<AuthenticationProvider>()
+                    .signUp(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                if (response == "Signed up!") {
+                  response = await context
+                      .read<AuthenticationProvider>()
+                      .signIn(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim());
+                  if (response == "Success" || response == "Signed in!") {
+                    Navigator.popAndPushNamed(
+                        context, LoginSuccessScreen.routeName);
+                  }
+                } else {
+                  final snackBar = SnackBar(
+                    content: Text(response),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               }
             },
           )
