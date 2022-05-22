@@ -50,7 +50,7 @@ class SpecialOfferCard extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: getProportionateScreenWidth(18),
                                 fontWeight: FontWeight.bold)),
-                        TextSpan(text: "$numOfBrands Brands"),
+                        TextSpan(text: "$numOfBrands Products"),
                       ])),
                 )
               ],

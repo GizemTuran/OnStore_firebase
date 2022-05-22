@@ -111,7 +111,7 @@ class CheckoutCard extends StatelessWidget {
                   builder: (context, cart, child) {
                     return Text.rich(TextSpan(text: "Total:\n", children: [
                       TextSpan(
-                          text: "\$${cart.totalPrice}",
+                          text: "\$${cart.totalPrice.toStringAsFixed(2)}",
                           style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,

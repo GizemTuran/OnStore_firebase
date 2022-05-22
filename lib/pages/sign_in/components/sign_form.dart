@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:onstore/constants.dart';
+import 'package:onstore/core/services/authenticationProvider.dart';
 import 'package:onstore/shared/components/custom_surfix_icon.dart';
 import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/shared/components/form_error.dart';
 import 'package:onstore/pages/forgot_password/forgot_password_screen.dart';
 import 'package:onstore/pages/login_success/login_success_screen.dart';
 import 'package:onstore/size_config.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignForm extends StatefulWidget {
@@ -45,13 +47,14 @@ class _SignFormState extends State<SignForm> {
 
   Future<void> readySharedPreferences() async {
     var sharedPreferences = await SharedPreferences.getInstance();
+
     this._email = sharedPreferences.getString("email") ?? "";
     this._password = sharedPreferences.getString("password") ?? "";
     setState(() {
       eml.text = _email!;
       pwd.text = _password!;
+      _email != "" && _password != "" ? remember = true : remember = false;
     });
-    print("$_email $_password");
   }
 
   @override
@@ -75,12 +78,12 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              Text("Remember me"),
-              Spacer(),
+              const Text("Remember me"),
+              const Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
-                child: Text(
+                child: const Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
@@ -91,12 +94,30 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                Navigator.popAndPushNamed(
-                    context, LoginSuccessScreen.routeName);
+                final response = await context
+                    .read<AuthenticationProvider>()
+                    .signIn(email: eml.text.trim(), password: pwd.text.trim());
+                final perfs = await SharedPreferences.getInstance();
+
+                if (response == "Success" || response == "Signed in!") {
+                  if (remember) {
+                    await perfs.setString("email", eml.text.trim());
+                    await perfs.setString("password", pwd.text.trim());
+                  } else {
+                    await perfs.remove('email');
+                    await perfs.remove('password');
+                  }
+                  Navigator.popAndPushNamed(
+                      context, LoginSuccessScreen.routeName);
+                } else {
+                  final snackBar = SnackBar(
+                    content: Text(response),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               }
             },
           ),
@@ -128,7 +149,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
         // If  you are using latest version of flutter then lable text and hint text shown like this

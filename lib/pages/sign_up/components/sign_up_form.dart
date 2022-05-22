@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:onstore/core/services/authenticationProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 import '../../../shared/components/custom_surfix_icon.dart';
@@ -13,8 +15,9 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordController2 = TextEditingController();
   String? confirm_password;
   final List<String> errors = [];
 
@@ -42,13 +45,17 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildConfPasswordFormField(),
+          buildConfPasswordFormField(passwordController2),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
             press: () {
-              if (_formKey.currentState!.validate()) {}
+              if (_formKey.currentState!.validate()) {
+                context.read<AuthenticationProvider>().signUp(
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim());
+              }
             },
           )
         ],
@@ -57,36 +64,31 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   TextFormField buildPasswordFormField() {
-    return buildConfPasswordFormField();
+    return buildConfPasswordFormField(passwordController);
   }
 
-  TextFormField buildConfPasswordFormField() {
+  TextFormField buildConfPasswordFormField(TextEditingController passwordCont) {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => confirm_password = newValue,
+      controller: passwordCont,
+      onSaved: (newValue) => confirm_password = passwordCont.text,
       onChanged: (value) {
-        if (password == confirm_password) {
+        if (passwordCont.text == confirm_password) {
           removeError(error: kMatchPassError);
         }
-        //else if (value.length >= 8) {
-        //removeError(error: kShortPassError);
-        //}
-        return null;
       },
       validator: (value) {
         if (value!.isEmpty) {
           return "";
-        } else if (password != confirm_password) {
+        } else if (passwordCont.text != value) {
           addError(error: kMatchPassError);
           return "";
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixicon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -96,14 +98,14 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      controller: emailController,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        password = value;
+
         return null;
       },
       validator: (value) {
@@ -116,7 +118,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
         // If  you are using latest version of flutter then lable text and hint text shown like this

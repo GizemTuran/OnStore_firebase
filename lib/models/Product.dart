@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 
 class Category {
   late String name;
@@ -69,9 +72,10 @@ class Products {
 }
 
 class Product {
+  List<String>? category;
   List<String>? colors;
   String? description;
-  int? id;
+  String? id;
   List<String>? images;
   bool? isFavourite;
   bool? isPopular;
@@ -80,7 +84,8 @@ class Product {
   String? title;
 
   Product(
-      {this.colors,
+      {this.category,
+      this.colors,
       this.description,
       this.id,
       this.images,
@@ -91,9 +96,10 @@ class Product {
       this.title});
 
   Product.fromJson(Map<String, dynamic> json) {
+    category = json['category'].cast<String>();
     colors = json['colors'].cast<String>();
     description = json['description'];
-    id = json['id'];
+    id = json['id'].toString();
     images = json['images'].cast<String>();
     isFavourite = json['isFavourite'];
     isPopular = json['isPopular'];
@@ -104,7 +110,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-
+    data['category'] = this.category;
     data['colors'] = this.colors;
     data['description'] = this.description;
     data['id'] = this.id;
@@ -116,4 +122,20 @@ class Product {
     data['title'] = this.title;
     return data;
   }
+}
+
+class ProductModel extends ChangeNotifier {
+  static final Map<String, dynamic> _categories = {
+    "households": {
+      "electronics": ["all", "console", "tv", "misc", "phone"],
+    },
+    "fashion": {
+      "men": ["all", "pants", "shoes", "shirts"],
+      "women": ["all", "shoes", "bags", "skirts", "shirts", "jewelery"],
+      "unisex": ["all", "accessories"],
+    }
+  };
+
+  Future<UnmodifiableMapView> get categories async =>
+      UnmodifiableMapView(_categories);
 }

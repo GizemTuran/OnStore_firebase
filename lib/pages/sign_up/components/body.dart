@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onstore/pages/sign_in/components/sign_form.dart';
-import 'package:onstore/shared/components/default_button.dart';
-import 'package:onstore/shared/components/form_error.dart';
 import 'package:onstore/size_config.dart';
-
 import '../../../constants.dart';
-import '../../../shared/components/custom_surfix_icon.dart';
 import '../../../shared/components/social_card.dart';
 import 'sign_up_form.dart';
 
@@ -25,7 +20,7 @@ class Body extends StatelessWidget {
                 "Register Account",
                 style: headingStyle,
               ),
-              Text(
+              const Text(
                 "Complete your details or continue \nwith social media",
                 textAlign: TextAlign.center,
               ),
@@ -50,9 +45,9 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(20)),
-              Text(
+              const Text(
                 "By continuing your confirm that you agree \nwith our Term and Condition",
-              textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
               ),
             ],
           ),

@@ -28,32 +28,32 @@ class _BodyState extends State<Body> {
             padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20)),
             itemCount: cartItems.items.length,
-            itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Dismissible(
-                  direction: DismissDirection.endToStart,
-                  key: Key(cartItems.items[index].product.id.toString()),
-                  background: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFFFE6E6),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        SvgPicture.asset("assets/icons/Trash.svg")
-                      ],
-                    ),
-                  ),
-                  onDismissed: (direction) {
-                    widget.dismiss.call(direction);
-                    cartItems.remove(index);
+            itemBuilder: (context, index) => Consumer<CartModel>(
+                  builder: (context, cart, child) {
+                    return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Dismissible(
+                          direction: DismissDirection.endToStart,
+                          key: Key(cart.items[index].product.id.toString()),
+                          background: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFFFE6E6),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Row(
+                              children: [
+                                const Spacer(),
+                                SvgPicture.asset("assets/icons/Trash.svg")
+                              ],
+                            ),
+                          ),
+                          onDismissed: (direction) {
+                            widget.dismiss.call(direction);
+                            cart.remove(index);
+                          },
+                          child: CartItemCard(cart: cart.items[index]),
+                        ));
                   },
-                  child:
-                      /*Consumer<CartModel>(builder: (context, cart, child) {
-                        return CartItemCard(cart: cartItems.items[index])
-                      }*/
-                      CartItemCard(cart: cartItems.items[index]),
-                )));
+                ));
   }
 }

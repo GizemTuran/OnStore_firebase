@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onstore/models/Cart.dart';
+import 'package:onstore/pages/cart/cart_screen.dart';
 import 'package:onstore/shared/components/default_button.dart';
 import 'package:onstore/shared/components/rounded_icon_btn.dart';
 import 'package:onstore/constants.dart';
@@ -51,6 +52,8 @@ class Body extends StatelessWidget {
                             text: "Add to Cart",
                             press: () {
                               cartItem.add(product, amount);
+                              Navigator.popAndPushNamed(
+                                  context, CartScreen.rounteName);
                             },
                           ),
                         ),

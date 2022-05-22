@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -31,6 +34,22 @@ class FirebaseService {
     return categories;
   }
 
+  static Future<List<String>> getSubcategories(String category) async {
+    List<String> categories = [];
+    final ref = FirebaseDatabase.instance.ref();
+    var req;
+    category != ""
+        ? req = ref.child(category)
+        : req = ref.child('mainCategory');
+    req.once().then((event) {
+      event.snapshot.children.forEach((element) {
+        print(element.key);
+        categories.add(element.key.toString());
+      });
+    });
+    return categories;
+  }
+
   static Future<List<String>> getSubCategories(
       String category, int depth) async {
     List<String> cat = [];
@@ -58,6 +77,56 @@ class FirebaseService {
     return cat;
   }
 
+  static Future<int> getProductCount(String category) async {
+    int count = 0;
+    final db = await FirebaseFirestore.instance.collection("products").get();
+    final docs = db.docs;
+    docs.forEach((data) {
+      if (data["category"].contains(category)) {
+        count++;
+      }
+    });
+
+    return count;
+  }
+
+  static Future<List<Product>> getProductFirestore(List<String> filter) async {
+    List<Product> products = [];
+    final db = FirebaseFirestore.instance.collection("products");
+    final doc = await db.get();
+    final productsJson = doc.docs;
+    print("filter: $filter");
+    if (filter.isEmpty) {
+      productsJson.forEach((productjson) {
+        Map<String, dynamic> data = {"id": productjson.id};
+        data.addAll(productjson.data());
+        products.add(Product.fromJson(data));
+      });
+    } else {
+      productsJson.forEach((productjson) {
+        bool con = false;
+        final prcat = productjson["category"];
+        int lenflt = filter.length;
+        if (lenflt <= prcat.length) {
+          int ctn = 0;
+          for (int i = 0; i < lenflt; i++) {
+            if (prcat[i] == filter[i]) {
+              ctn += 1;
+            }
+          }
+          if (ctn == filter.length) con = true;
+        }
+        if (con == true) {
+          Map<String, dynamic> data = {"id": productjson.id};
+          data.addAll(productjson.data());
+          products.add(Product.fromJson(data));
+        }
+      });
+    }
+
+    return products;
+  }
+
   static List<String> cate = [];
   static Future<List<Product>> getProducts() async {
     List<Product> products = [];
@@ -71,7 +140,8 @@ class FirebaseService {
             subcat.addAll(value);
           })
           .then((value) => productpaths = subcat)
-          .then((value) => cate = value);
+          .then((value) => cate = value)
+          .timeout(Duration(seconds: 5));
     });
     for (String c in cate) {
       products.addAll(await getProductbyCat(c));
@@ -118,7 +188,7 @@ class FirebaseService {
       "price": item.child("price").value,
       "rating": item.child("rating").value,
       "description": item.child("description").value,
-      "category": item.child("category").value,
+      "category": item.child("category").value ?? [],
       "id": item.child("id").value,
       "colors": item.child("colors").value,
       "isFavourite": item.child("isFavourite").value ?? false,

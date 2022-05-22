@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:onstore/models/Product.dart';
@@ -15,19 +16,40 @@ class CartModel extends ChangeNotifier {
 
   UnmodifiableListView<Cart> get items => UnmodifiableListView(_cartItems);
 
-  int get totalPrice => _cartItems.length * 42;
+  double get totalPrice {
+    double total = 0.0;
+    final a =
+        _cartItems.map((e) => e.product.price! * e.numberOfItems).toList();
+    a.forEach((element) {
+      total += element;
+    });
+
+    return total;
+  }
+
+  int get listcount => items.length;
+
+  int getAmount(int index) {
+    return _cartItems.elementAt(index).numberOfItems;
+  }
 
   void add(Product product, int amount) {
-    if (_cartItems
-        .where((element) => element.product.id == product.id)
-        .isNotEmpty)
-      _cartItems
-          .where((element) => element.product.id == product.id)
-          .elementAt(0);
+    var result =
+        _cartItems.indexWhere((element) => element.product.id == product.id);
 
-    _cartItems.add(Cart(product: product, numberOfItems: amount));
+    print(product.id);
+    print(result);
+    if (result > -1) {
+      final temp = _cartItems[result];
+      _cartItems.removeAt(result);
+      _cartItems.add(Cart(
+          numberOfItems: temp.numberOfItems + amount, product: temp.product));
+    } else {
+      _cartItems.add(Cart(product: product, numberOfItems: amount));
+    }
+
     notifyListeners();
-    print(_cartItems.length);
+    //print(_cartItems.length);
   }
 
   void removeAll() {

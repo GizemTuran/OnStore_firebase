@@ -1,30 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:onstore/core/services/firebase_service.dart';
+import 'package:onstore/core/utils/string_process.dart';
+import 'package:onstore/models/ProductFilter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 
 // We need satefull widget for our categories
 
 class Categories extends StatefulWidget {
+  Categories({
+    Key? key,
+    this.categories,
+    required this.press,
+  }) : super(key: key);
+  List<String>? categories;
+  Function press;
+
   @override
   _CategoriesState createState() => _CategoriesState();
 }
 
 class _CategoriesState extends State<Categories> {
-  List<String> categories = ["Hand bag", "Jewellery", "Footwear", "Dresses"];
+  List<String> categories = [];
+  @override
+
   // By default our first item will be selected
   int selectedIndex = 0;
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
+    //print("categories: ${widget.category}");
+    categories = widget.categories!;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+      padding: const EdgeInsets.symmetric(vertical: 7),
       child: SizedBox(
-        height: 25,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) => buildCategory(index),
-        ),
-      ),
+          height: 25,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) => buildCategory(index),
+          )),
     );
   }
 
@@ -33,6 +49,7 @@ class _CategoriesState extends State<Categories> {
       onTap: () {
         setState(() {
           selectedIndex = index;
+          widget.press(categories[index]);
         });
       },
       child: Padding(
@@ -41,7 +58,7 @@ class _CategoriesState extends State<Categories> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              categories[index],
+              categories[index].capitalize(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: selectedIndex == index ? kTextColor : kTextLightColor,

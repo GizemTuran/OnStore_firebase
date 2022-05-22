@@ -26,8 +26,9 @@ class CustomAppBar extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              onPressed: () =>
-                  Navigator.popAndPushNamed(context, HomePage.routeName),
+              onPressed: () {
+                Navigator.pop(context);
+              },
               style: TextButton.styleFrom(
                   backgroundColor: Colors.white, shape: CircleBorder()),
             ),
